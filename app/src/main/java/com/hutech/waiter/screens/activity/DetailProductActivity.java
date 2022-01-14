@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.hutech.lib.ResultModel.ProductsResultModel;
 import com.hutech.waiter.R;
 
@@ -34,7 +35,7 @@ public class DetailProductActivity extends AppCompatActivity {
         transData();
     }
     TextView txtTitle, txtPrice, txtDescription, txtAmount;
-    ImageView btnMinus, btnPlus;
+    ImageView btnMinus, btnPlus, imgProduct;
     TextView btnAddToCard;
     private void ititView() {
         txtTitle = findViewById(R.id.txtTitle);
@@ -43,14 +44,18 @@ public class DetailProductActivity extends AppCompatActivity {
         txtAmount = findViewById(R.id.txtAmount);
         btnMinus = findViewById(R.id.btnMinus);
         btnPlus = findViewById(R.id.btnPlus);
+        imgProduct = findViewById(R.id.img_product);
         btnAddToCard = findViewById(R.id.btnAddToCart);
     }
-
+    private static final String BASE_URL_IMG = "http://192.168.1.111:8083/images/product/";
     private void transData() {
         txtTitle.setText(currentProduct.getName());
         txtPrice.setText(currentProduct.getPrice() * 1000 + "vnđ");
         txtDescription.setText(currentProduct.getDescription());
-
+        String imgURL = BASE_URL_IMG +currentProduct.getImage();
+        Glide.with(this)
+                .load(imgURL)
+                .into(imgProduct);
         //handle button
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override

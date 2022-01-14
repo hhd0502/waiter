@@ -60,6 +60,17 @@ public class OrderCreateModel
     public class ListOrder
     {
         private String productID;
+        private int amount;
+
+        public int getAmount ()
+        {
+            return amount;
+        }
+
+        public void setAmount (int amount)
+        {
+            this.amount = amount;
+        }
 
         public String getProductID ()
         {

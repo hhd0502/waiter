@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hutech.lib.ResultModel.CategoryResultModel;
 import com.hutech.lib.ResultModel.ProductsResultModel;
@@ -125,19 +127,22 @@ public class MenuActivity extends AppCompatActivity {
                 int getQuantity = Integer.parseInt(quantity.getText().toString());
                 if (getQuantity == 0)
                 {
-                    showError("Vui lòng chọn ít nhất một phần để tiếp tục");
+                    AlertDialog.Builder ab = createAlertDiaglog("Vui lòng chọn ít nhất 1 món để tiếp tục");
+                    ab.show();
                 }
                 else {
                     icLoader.setVisibility(View.VISIBLE);
                     (new Handler()).postDelayed(() -> {
-                        if (order == null)
-                        {
-                            DetailTemporaryOrderActivity.start(getBaseContext(), currentTable);
-                        }
-                        else
-                        {
-//                            DetailTemporaryOrderActivity.start(this, currentTable, order, orderedItem);
-                        }
+                        DetailTemporaryOrderActivity.start(getBaseContext(), currentTable);
+
+//                        if (order == null)
+//                        {
+//                            DetailTemporaryOrderActivity.start(getBaseContext(), currentTable);
+//                        }
+//                        else
+//                        {
+////                            DetailTemporaryOrderActivity.start(this, currentTable, order, orderedItem);
+//                        }
                         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 //                        finish();
                     }, 500);
@@ -150,6 +155,26 @@ public class MenuActivity extends AppCompatActivity {
         popupMenu.inflate(R.menu.popup_menu);
     }
 
+    public AlertDialog.Builder createAlertDiaglog(String message){
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("Chú ý");
+        ab.setMessage(message);
+        ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        ab.setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        ab.create();
+        return ab;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,7 +182,7 @@ public class MenuActivity extends AppCompatActivity {
         getViewIdAll();
         tableName.setText(currentTable.getName());
         getCategoryList();
-        getProductList();
+        searchProductByCategoryId(1);
     }
 
     @Override
@@ -166,7 +191,7 @@ public class MenuActivity extends AppCompatActivity {
         getViewIdAll();
         tableName.setText(currentTable.getName());
         getCategoryList();
-        getProductList();
+        searchProductByCategoryId(1);
     }
 
     @Override
@@ -174,7 +199,16 @@ public class MenuActivity extends AppCompatActivity {
         super.onResume();
         getViewIdAll();
         getCategoryList();
-        getProductList();
+        searchProductByCategoryId(1);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(categoryAdapter != null)
+        {
+            categoryAdapter.release();
+        }
     }
 
     public void getProductList() {
@@ -231,17 +265,16 @@ public class MenuActivity extends AppCompatActivity {
         List<CategoryResultModel.Data> data = categoryResultModel.getData();
         categoryAdapter = new TabCategoryAdapter(data, this, new IClickCategoryItem() {
             @Override
-            public void onClick(CategoryResultModel.Data category) {
-                searchProductByCategoryId(category);
+            public void onClick(CategoryResultModel.Data category, int position) {
+                searchProductByCategoryId(category.getId());
             }
         });
         tabCategory.setAdapter(categoryAdapter);
     }
 
-    private void searchProductByCategoryId(CategoryResultModel.Data category) {
-        int ID = category.getId();
+    private void searchProductByCategoryId(int id) {
         ProductService productService = getRetrofit().create(ProductService.class);
-        new CompositeDisposable().add(productService.getProductByCategoryId(ID)
+        new CompositeDisposable().add(productService.getProductByCategoryId(id)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse, this::handleErrorCategory));
