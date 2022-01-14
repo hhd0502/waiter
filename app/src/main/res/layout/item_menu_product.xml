@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:background="@android:color/transparent"
-    app:cardCornerRadius="@dimen/radius_card_medium"
+    app:cardCornerRadius="15dp"
     app:cardElevation="0dp">
     <LinearLayout
         android:id="@+id/layout_holder"
@@ -14,7 +14,7 @@
         android:orientation="vertical">
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_icon_x9">
+            android:layout_height="90dp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_product"
@@ -27,26 +27,28 @@
                 android:id="@+id/btn_add_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|top"
-                android:paddingStart="@dimen/margin_medium"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="15dp"
                 android:paddingEnd="0dp"
-                android:paddingBottom="@dimen/margin_medium">
+                >
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:background="@drawable/medium_round_corner_gradient_background"
                     android:padding="@dimen/margin_small"
                     app:srcCompat="@drawable/ic_add_white" />
             </LinearLayout>
         </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:padding="@dimen/margin_small"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:background="#EAE6E6"
+            android:orientation="vertical"
+            android:paddingBottom="15dp">
             <me.imstudio.core.ui.widget.TextView
                 android:id="@+id/product_name"
                 android:layout_width="wrap_content"
@@ -80,6 +82,7 @@
                     android:fontFamily="@font/source_sans_pro_semi_bold"
                     android:textSize="@dimen/size_text_extra_medium"
                     android:textColor="@android:color/black"
+                    android:digits="0123456789."
                     android:text="20.000"/>
                 <me.imstudio.core.ui.widget.TextView
                     android:layout_width="wrap_content"

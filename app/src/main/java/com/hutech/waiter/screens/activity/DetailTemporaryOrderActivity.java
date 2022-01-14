@@ -23,31 +23,13 @@ import me.imstudio.core.ui.widget.TextView;
 public class DetailTemporaryOrderActivity extends AppCompatActivity {
 
     private static final String TABLE = "table";
-    private static Context context;
     private static Table currentTable;
     private static ProductWrapper productWrapper;
     private static Order ordered;
 
     public DetailOrderAdapter detailOrderAdapter;
+    public DetailTemporaryOrderActivity (){
 
-    public static void start(View.OnClickListener onClickListener, Table table, ProductWrapper orderedItem) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(TABLE, table);
-        Intent intent = new Intent(context, MenuActivity.class);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
-        currentTable = table;
-        productWrapper = orderedItem;
-    }
-    public static void start(View.OnClickListener onClickListener, Table table, Order order, ProductWrapper orderedItem) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(TABLE, table);
-        Intent intent = new Intent(context, MenuActivity.class);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
-        currentTable = table;
-        productWrapper = orderedItem;
-        ordered = order;
     }
 
     TextView tableName ;
@@ -57,6 +39,22 @@ public class DetailTemporaryOrderActivity extends AppCompatActivity {
     TextView quantity;
     FloatingActionButton fabAddProduct;
 
+    public static void start(Context context, Table table) {
+
+        Intent intent = new Intent(context, DetailTemporaryOrderActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+        currentTable = table;
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.layout_detail_activity);
+        getViewId();
+        transData();
+    }
     public void getViewId(){
         tableName = findViewById(R.id.text_table_name);
         btnClose = findViewById(R.id.btn_close);
@@ -66,12 +64,8 @@ public class DetailTemporaryOrderActivity extends AppCompatActivity {
         quantity = findViewById(R.id.text_quantity);
         fabAddProduct = findViewById(R.id.fab_add);
 
-
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_detail_activity);
-        getViewId();
+    private void transData() {
+        tableName.setText(currentTable.getName());
     }
 }

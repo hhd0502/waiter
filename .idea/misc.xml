@@ -46,12 +46,12 @@
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/fragment_serving.xml" value="0.1734375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_detail.xml" value="0.75" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_foods.xml" value="0.5" />
-        <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_menu_product.xml" value="1.1" />
+        <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_menu_product.xml" value="0.5" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_popup.xml" value="0.9" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_session.xml" value="0.5" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_statistic.xml" value="0.1734375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_tab.xml" value="0.1" />
-        <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/layout_detail_activity.xml" value="0.33" />
+        <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/layout_detail_activity.xml" value="0.20296570898980537" />
       </map>
     </option>
   </component>

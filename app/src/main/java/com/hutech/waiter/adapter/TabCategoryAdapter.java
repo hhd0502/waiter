@@ -19,11 +19,13 @@ public class TabCategoryAdapter extends RecyclerView.Adapter<TabCategoryAdapter.
 
     private List<CategoryResultModel.Data> listCategory;
     private Context context;
+    private IClickCategoryItem clickCategoryItem;
 
-    public TabCategoryAdapter(List<CategoryResultModel.Data> listCategory, Context context)
+    public TabCategoryAdapter(List<CategoryResultModel.Data> listCategory, Context context, IClickCategoryItem listener)
     {
         this.listCategory = listCategory;
         this.context = context;
+        this.clickCategoryItem = listener;
     }
 
     @NonNull
@@ -37,7 +39,13 @@ public class TabCategoryAdapter extends RecyclerView.Adapter<TabCategoryAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.text_category_name.setText(String.valueOf(listCategory.get(position).getCategoryName()));
-        holder.text_num_category_count.setText(String.valueOf(listCategory.get(position).getProductCount()));
+        holder.text_num_category_count.setText("("+String.valueOf(listCategory.get(position).getProductCount())+")");
+        holder.text_category_name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

@@ -31,6 +31,7 @@ import com.hutech.lib.entity.ProductWrapper;
 import com.hutech.lib.entity.Table;
 import com.hutech.lib.presentation.ProgressDialog;
 import com.hutech.waiter.R;
+import com.hutech.waiter.adapter.IClickCategoryItem;
 import com.hutech.waiter.adapter.IClickProductItem;
 import com.hutech.waiter.adapter.ProductAdapter;
 import com.hutech.waiter.adapter.TabCategoryAdapter;
@@ -121,7 +122,8 @@ public class MenuActivity extends AppCompatActivity {
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (quantity.getText() == "0")
+                int getQuantity = Integer.parseInt(quantity.getText().toString());
+                if (getQuantity == 0)
                 {
                     showError("Vui lòng chọn ít nhất một phần để tiếp tục");
                 }
@@ -130,11 +132,11 @@ public class MenuActivity extends AppCompatActivity {
                     (new Handler()).postDelayed(() -> {
                         if (order == null)
                         {
-                            DetailTemporaryOrderActivity.start(this, currentTable, orderedItem);
+                            DetailTemporaryOrderActivity.start(getBaseContext(), currentTable);
                         }
                         else
                         {
-                            DetailTemporaryOrderActivity.start(this, currentTable, order, orderedItem);
+//                            DetailTemporaryOrderActivity.start(this, currentTable, order, orderedItem);
                         }
                         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 //                        finish();
@@ -207,12 +209,13 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void addToCard(ProductsResultModel.Data product) {
+        Log.v("menu_add_to_cart","Click button add to cart");
 
     }
 
 
     private void handleError(Throwable throwable) {
-        Log.v("menu_call-all-product","Can't Access to server");
+        Log.v("menu_call-all-product","Can't Access to server to get all product");
     }
 
     private void getCategoryList() {
@@ -220,15 +223,34 @@ public class MenuActivity extends AppCompatActivity {
         new CompositeDisposable().add(categoryService.getAllCategory()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse, this::handleError));
+                .subscribe(this::handleResponse, this::handleErrorCategory));
     }
+
 
     private void handleResponse(CategoryResultModel categoryResultModel) {
         List<CategoryResultModel.Data> data = categoryResultModel.getData();
-        categoryAdapter = new TabCategoryAdapter(data, this);
+        categoryAdapter = new TabCategoryAdapter(data, this, new IClickCategoryItem() {
+            @Override
+            public void onClick(CategoryResultModel.Data category) {
+                searchProductByCategoryId(category);
+            }
+        });
         tabCategory.setAdapter(categoryAdapter);
     }
 
+    private void searchProductByCategoryId(CategoryResultModel.Data category) {
+        int ID = category.getId();
+        ProductService productService = getRetrofit().create(ProductService.class);
+        new CompositeDisposable().add(productService.getProductByCategoryId(ID)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponse, this::handleErrorCategory));
+    }
+
+    private void handleErrorCategory(Throwable throwable) {
+        Log.v("menu_call-all-category","Can't Access to server to get all category");
+
+    }
 
     @Override
     public void onBackPressed() {
