@@ -50,14 +50,15 @@ public class DetailProductActivity extends AppCompatActivity {
         txtTitle.setText(currentProduct.getName());
         txtPrice.setText(currentProduct.getPrice() * 1000 + "vnđ");
         txtDescription.setText(currentProduct.getDescription());
+
         //handle button
         btnMinus.setOnClickListener(new View.OnClickListener() {
-            int curAmount = Integer.parseInt(txtAmount.getText().toString());
             @Override
             public void onClick(View v) {
+                int curAmount = Integer.parseInt(txtAmount.getText().toString());
                 if(curAmount > 1){
                     curAmount--;
-                    txtAmount.setText(curAmount);
+                    txtAmount.setText(String.valueOf(curAmount));
                 }
             }
         });
@@ -65,9 +66,9 @@ public class DetailProductActivity extends AppCompatActivity {
             int curAmount = Integer.parseInt(txtAmount.getText().toString());
             @Override
             public void onClick(View v) {
-                if(curAmount > 1){
+                if(curAmount > 0){
                     curAmount++;
-                    txtAmount.setText(curAmount);
+                    txtAmount.setText(String.valueOf(curAmount));
                 }
             }
         });
