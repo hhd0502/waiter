@@ -34,7 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu_product, parent, false);
         return new ProductAdapter.ViewHolder(view);
     }
-    private static final String BASE_URL_IMAGE = "http://192.168.1.111/images/product/";
+    private static final String BASE_URL_IMAGE = "http://192.168.1.111:8083/images/product/";
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProductsResultModel.Data product = listProduct.get(position);

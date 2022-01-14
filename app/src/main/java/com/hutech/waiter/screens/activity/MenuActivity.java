@@ -21,8 +21,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.hutech.lib.ResultModel.CategoryResultModel;
 import com.hutech.lib.ResultModel.ProductsResultModel;
 import com.hutech.lib.ResultModel.TableResultModel;
+import com.hutech.lib.Services.CategoryService;
 import com.hutech.lib.Services.ProductService;
 import com.hutech.lib.entity.Order;
 import com.hutech.lib.entity.ProductWrapper;
@@ -191,7 +193,17 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void getCategoryList() {
+        CategoryService categoryService = getRetrofit().create(CategoryService.class);
+        new CompositeDisposable().add(categoryService.getAllCategory()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponse, this::handleError));
+    }
 
+    private void handleResponse(CategoryResultModel categoryResultModel) {
+        List<CategoryResultModel.Data> data = categoryResultModel.getData();
+        categoryAdapter = new TabCategoryAdapter(data, this);
+        tabCategory.setAdapter(categoryAdapter);
     }
 
 
