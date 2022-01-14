@@ -17,7 +17,7 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/text_table_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                 android:text="Bàn 102A"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/size_text_large" />
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/source_sans_pro_regular"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/margin"
         android:background="@android:color/transparent">
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -58,7 +58,7 @@
             android:textColor="@color/colorTextPrimary"
             android:text="TT"
             android:textAllCaps="true"/>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="6"
@@ -67,7 +67,7 @@
             android:textColor="@color/colorTextPrimary"
             android:text="Tên món"
             android:textAllCaps="true"/>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
@@ -93,7 +93,7 @@
                 android:layout_width="@dimen/size_icon_x9"
                 android:layout_height="@dimen/size_icon_x9"
                 app:srcCompat="@drawable/ic_empty_product"/>
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin"
@@ -136,7 +136,7 @@
         android:background="@android:color/white"
         android:weightSum="10">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
             android:text="24"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/size_text_semi_large" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -163,7 +163,7 @@
             android:paddingTop="@dimen/size_text_medium"
             android:paddingBottom="@dimen/size_text_medium">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/gilroy_bold"

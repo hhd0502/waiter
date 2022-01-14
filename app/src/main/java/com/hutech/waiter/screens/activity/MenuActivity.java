@@ -106,13 +106,13 @@ public class MenuActivity extends AppCompatActivity {
         mDummyImgView = findViewById(R.id.img_cpy);
         viewDetail = findViewById(R.id.view_detail);
         btnOption = findViewById(R.id.btn_option);
-        btnOption.setOnClickListener(v -> {
-            if (isShowingPopup)
-                popupMenu.dismiss();
-            else
-                popupMenu.show();
-            isShowingPopup = !isShowingPopup;
-        });
+//        btnOption.setOnClickListener(v -> {
+//            if (isShowingPopup)
+//                popupMenu.dismiss();
+//            else
+//                popupMenu.show();
+//            isShowingPopup = !isShowingPopup;
+//        });
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> MenuActivity.super.onBackPressed());
@@ -121,7 +121,7 @@ public class MenuActivity extends AppCompatActivity {
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (String.valueOf(quantity.getText()) == "0")
+                if (quantity.getText() == "0")
                 {
                     showError("Vui lòng chọn ít nhất một phần để tiếp tục");
                 }
@@ -130,11 +130,11 @@ public class MenuActivity extends AppCompatActivity {
                     (new Handler()).postDelayed(() -> {
                         if (order == null)
                         {
-//                            DetailOrderActivity.start(this, currentTable, orderedItem);
+                            DetailTemporaryOrderActivity.start(this, currentTable, orderedItem);
                         }
                         else
                         {
-//                            DetailOrderActivity.start(this, currentTable, order, orderedItem);
+                            DetailTemporaryOrderActivity.start(this, currentTable, order, orderedItem);
                         }
                         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 //                        finish();
@@ -167,6 +167,14 @@ public class MenuActivity extends AppCompatActivity {
         getProductList();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getViewIdAll();
+        getCategoryList();
+        getProductList();
+    }
+
     public void getProductList() {
         ProductService productService = getRetrofit().create(ProductService.class);
         new CompositeDisposable().add(productService.getAll()
@@ -195,7 +203,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void gotoDetailProduct(ProductsResultModel.Data product) {
-        DetailProductActivity.start(product);
+        DetailProductActivity.start(this, product);
     }
 
     private void addToCard(ProductsResultModel.Data product) {

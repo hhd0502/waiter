@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Waiter"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".screens.activity.DetailTemporaryOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.activity.DetailProductActivity"
             android:exported="false" />
         <activity

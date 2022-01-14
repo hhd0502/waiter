@@ -1,5 +1,6 @@
 package com.hutech.lib.ResultModel;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class ProductsResultModel {
@@ -34,7 +35,7 @@ public class ProductsResultModel {
         return "[data = "+data+", status = "+status+"]";
     }
 
-    public class Data
+    public class Data implements Serializable
     {
         private String image;
 
