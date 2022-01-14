@@ -56,7 +56,7 @@
                     android:id="@+id/btnMinus"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    app:srcCompat="@drawable/ic_add" />
+                    app:srcCompat="@drawable/icons8_subtract_90px" />
 
                 <me.imstudio.core.ui.widget.TextView
                     android:id="@+id/txtAmount"
@@ -64,6 +64,7 @@
                     android:layout_height="30dp"
                     android:layout_margin="10dp"
                     android:gravity="center"
+                    android:textColor="@color/black"
                     android:text="1"
                     android:textAlignment="center"
                     android:textSize="25sp"
@@ -73,7 +74,7 @@
                     android:id="@+id/btnPlus"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    app:srcCompat="@drawable/ic_add" />
+                    app:srcCompat="@drawable/icons8_plus_math_90px" />
             </LinearLayout>
 
             <me.imstudio.core.ui.widget.TextView

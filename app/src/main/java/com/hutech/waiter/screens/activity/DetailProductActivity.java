@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.hutech.lib.ResultModel.ProductsResultModel;
 import com.hutech.waiter.R;
@@ -33,7 +34,8 @@ public class DetailProductActivity extends AppCompatActivity {
         transData();
     }
     TextView txtTitle, txtPrice, txtDescription, txtAmount;
-    View btnMinus, btnPlus, btnAddToCard;
+    ImageView btnMinus, btnPlus;
+    TextView btnAddToCard;
     private void ititView() {
         txtTitle = findViewById(R.id.txtTitle);
         txtPrice = findViewById(R.id.txtPrice);
@@ -46,7 +48,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
     private void transData() {
         txtTitle.setText(currentProduct.getName());
-        txtPrice.setText(String.valueOf(currentProduct.getPrice()*1000 + "vnđ"));
+        txtPrice.setText(currentProduct.getPrice() * 1000 + "vnđ");
         txtDescription.setText(currentProduct.getDescription());
         //handle button
         btnMinus.setOnClickListener(new View.OnClickListener() {
