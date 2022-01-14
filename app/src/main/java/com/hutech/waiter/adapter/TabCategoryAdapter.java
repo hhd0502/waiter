@@ -36,25 +36,27 @@ public class TabCategoryAdapter extends RecyclerView.Adapter<TabCategoryAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.text_department_name.setText(String.valueOf(listCategory.get(position).getCategoryName()));
-        holder.text_num_table.setText(String.valueOf(listCategory.get(position).getCategoryDescription()));
+        holder.text_category_name.setText(String.valueOf(listCategory.get(position).getCategoryName()));
+        holder.text_num_category_count.setText(String.valueOf(listCategory.get(position).getProductCount()));
     }
 
     @Override
     public int getItemCount() {
-        return listCategory.size();
+        if(listCategory.size() > 0 )
+            return listCategory.size();
+        return 0;
     }
 
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView text_department_name, text_num_table;
+        TextView text_category_name, text_num_category_count;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            text_department_name = itemView.findViewById(R.id.text_department_name);
-            text_num_table = itemView.findViewById(R.id.text_num_table);
+            text_category_name = itemView.findViewById(R.id.text_department_name);
+            text_num_category_count = itemView.findViewById(R.id.text_num_table);
         }
     }
 

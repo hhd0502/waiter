@@ -36,20 +36,30 @@ public class CategoryResultModel {
 
     public class Data
     {
-        private String id;
+        private int id;
+
+        private int productCount;
 
         private String categoryName;
 
-        private String categoryDescription;
-
-        public String getId ()
+        public int getId ()
         {
             return id;
         }
 
-        public void setId (String id)
+        public void setId (int id)
         {
             this.id = id;
+        }
+
+        public int getProductCount ()
+        {
+            return productCount;
+        }
+
+        public void setProductCount (int productCount)
+        {
+            this.productCount = productCount;
         }
 
         public String getCategoryName ()
@@ -62,20 +72,10 @@ public class CategoryResultModel {
             this.categoryName = categoryName;
         }
 
-        public String getCategoryDescription ()
-        {
-            return categoryDescription;
-        }
-
-        public void setCategoryDescription (String categoryDescription)
-        {
-            this.categoryDescription = categoryDescription;
-        }
-
         @Override
         public String toString()
         {
-            return "[id = "+id+", categoryName = "+categoryName+", categoryDescription = "+categoryDescription+"]";
+            return "[id = "+id+", productCount = "+productCount+", categoryName = "+categoryName+"]";
         }
     }
 

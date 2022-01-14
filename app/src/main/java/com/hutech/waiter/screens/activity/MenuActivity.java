@@ -93,9 +93,9 @@ public class MenuActivity extends AppCompatActivity {
         tableName = findViewById(R.id.text_table_name_menu);
 
         tabCategory = findViewById(R.id.tab_category);
-        tabCategory.setLayoutManager(new LinearLayoutManager(this));
+        tabCategory.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         listProducts = findViewById(R.id.recycler_view);
-        listProducts.setLayoutManager(new LinearLayoutManager(this));
+        listProducts.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL, false));
 
         searchBar = findViewById(R.id.search_bar);
         quantity = findViewById(R.id.text_quantity);
@@ -182,12 +182,27 @@ public class MenuActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(this, data, new IClickProductItem() {
             @Override
             public void onClick(ProductsResultModel.Data product, int position) {
+                gotoDetailProduct(product);
+            }
 
+            @Override
+            public void onClickToCart(ProductsResultModel.Data product, int position) {
+                addToCard(product);
             }
         });
 
         listProducts.setAdapter(productAdapter);
     }
+
+    private void gotoDetailProduct(ProductsResultModel.Data product) {
+        DetailProductActivity.start(product);
+    }
+
+    private void addToCard(ProductsResultModel.Data product) {
+
+    }
+
+
     private void handleError(Throwable throwable) {
         Log.v("menu_call-all-product","Can't Access to server");
     }

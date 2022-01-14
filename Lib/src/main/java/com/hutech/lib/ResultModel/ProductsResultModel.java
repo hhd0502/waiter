@@ -40,7 +40,7 @@ public class ProductsResultModel {
 
         private String decription;
 
-        private String price;
+        private int price;
 
         private String name;
 
@@ -68,12 +68,12 @@ public class ProductsResultModel {
             this.decription = description;
         }
 
-        public String getPrice ()
+        public int getPrice ()
         {
             return price;
         }
 
-        public void setPrice (String price)
+        public void setPrice (int price)
         {
             this.price = price;
         }
