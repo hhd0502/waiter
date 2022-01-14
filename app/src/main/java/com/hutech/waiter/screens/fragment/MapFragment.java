@@ -32,7 +32,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MapFragment extends Fragment {
 
-    public MapFragment() {}
+    public MapFragment() {
+
+    }
 
     RecyclerView listTable;
     private MapAdapter mapAdapter;

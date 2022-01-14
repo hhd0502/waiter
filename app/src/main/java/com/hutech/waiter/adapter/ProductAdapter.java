@@ -45,18 +45,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.productPrice.setText(String.valueOf(product.getPrice()*1000));
         holder.productUnit.setText("Phần");
 
-        holder.transitionsContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClickProductItem.onClick(product,holder.getAdapterPosition());
-            }
-        });
-        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClickProductItem.onClickToCart(product,holder.getAdapterPosition());
-            }
-        });
+        holder.transitionsContainer.setOnClickListener(view -> ClickProductItem.onClick(product,holder.getAdapterPosition()));
+        holder.btnAdd.setOnClickListener(v -> ClickProductItem.onClickToCart(product,holder.getAdapterPosition()));
     }
 
 
