@@ -11,16 +11,9 @@ public class Product extends Selectable implements Serializable
 {
     @SerializedName("_id")
     private String id;
-//    @SerializedName("category")
-//    private Category category;
     @SerializedName("created_at")
     private long createdTime;
-    @SerializedName("type")
-    private String type;
-    @SerializedName("unit")
-    private String unit;
-    @SerializedName("discount_percent")
-    private int discountPercent;
+
     @SerializedName("price")
     private long price;
     @SerializedName("image")
@@ -61,17 +54,6 @@ public class Product extends Selectable implements Serializable
         return createdTime;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public int getDiscountPercent() {
-        return discountPercent;
-    }
 
     public long getPrice() {
         return price;

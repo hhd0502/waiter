@@ -1,5 +1,6 @@
 package com.hutech.lib.Model;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class OrderCreateModel
@@ -57,7 +58,7 @@ public class OrderCreateModel
     {
         return "[checkinTime = "+checkinTime+", tableOrderID = "+tableOrderID+", listOrder = "+listOrder+", staffID = "+staffID+"]";
     }
-    public class ListOrder
+    public static class ListOrder
     {
         private String productID;
         private int amount;

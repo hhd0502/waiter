@@ -110,11 +110,11 @@ public class ProductOptionDialog extends DialogFragment {
 
     public void setViews()
     {
-        String realUnit;
-        if (product.getUnit().equalsIgnoreCase("disc"))
-            realUnit = "phần";
-        else
-            realUnit = product.getUnit();
+        String realUnit = "phần";
+//        if (product.getUnit().equalsIgnoreCase("disc"))
+//            realUnit = "phần";
+//        else
+//            realUnit = product.getUnit();
         textUnit.setText(String.format("/ %s", realUnit));
         quantity.setText(String.format(Locale.getDefault(), "%d", product.getQuantity()));
         if (product.getNote()!=null && !product.getNote().isEmpty())

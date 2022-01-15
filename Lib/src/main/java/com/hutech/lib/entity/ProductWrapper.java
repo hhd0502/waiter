@@ -1,6 +1,7 @@
 package com.hutech.lib.entity;
 
 import com.google.gson.annotations.SerializedName;
+import com.hutech.lib.ResultModel.ProductsResultModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -9,30 +10,36 @@ import java.util.List;
 public class ProductWrapper implements Serializable
 {
     @SerializedName("docs")
-    private List<Product> products;
+    private List<ProductsResultModel.Data> products;
 
     public ProductWrapper()
     {
         products = new ArrayList<>();
     }
-    public List<Product> getProducts() {
+    public List<ProductsResultModel.Data> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products)
+    public void setProducts(List<ProductsResultModel.Data> products)
     {
         this.products = products;
     }
 
-    public void addProduct(Product product)
+    public void addProduct(ProductsResultModel.Data product)
     {
         if (isExisted(product) == -1)
+        {
+            product.setQuantity(1);
             products.add(product);
+        }
+        else {
+            product.setQuantity(product.getQuantity()+1);
+        }
     }
 
-    private int isExisted(Product product)
+    private int isExisted(ProductsResultModel.Data product)
     {
-        for(Product i : products)
+        for(ProductsResultModel.Data i : products)
         {
             if (i.getId().equals(product.getId()))
                 return products.indexOf(i);
@@ -42,15 +49,15 @@ public class ProductWrapper implements Serializable
 
     public int getQuantity()
     {
-        int result = 0;
-        for(Product i : products)
-            result += i.getQuantity();
-        return result;
+        return products.size();
     }
-
-    public Product getProductById(String id)
+    public int getQuantity(int id)
     {
-        for (Product i : products)
+        return products.size();
+    }
+    public ProductsResultModel.Data getProductById(String id)
+    {
+        for (ProductsResultModel.Data i : products)
         {
             if (i.getId().equals(id))
                 return i;

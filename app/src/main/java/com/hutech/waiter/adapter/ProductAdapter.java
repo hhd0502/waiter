@@ -43,7 +43,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 .load(BASE_URL_IMAGE+product.getImage())
                 .into(holder.productImg);
         holder.productName.setText(product.getName());
-        holder.productPrice.setText(String.valueOf(product.getPrice()*1000));
+        holder.productPrice.setText(product.getPrice() + ".000");
         holder.productUnit.setText("Phần");
 
         holder.transitionsContainer.setOnClickListener(view -> ClickProductItem.onClick(product,holder.getAdapterPosition()));

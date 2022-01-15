@@ -29,6 +29,7 @@ import com.hutech.lib.ResultModel.TableResultModel;
 import com.hutech.lib.Services.CategoryService;
 import com.hutech.lib.Services.ProductService;
 import com.hutech.lib.entity.Order;
+import com.hutech.lib.entity.Product;
 import com.hutech.lib.entity.ProductWrapper;
 import com.hutech.lib.entity.Table;
 import com.hutech.lib.presentation.ProgressDialog;
@@ -80,7 +81,7 @@ public class MenuActivity extends AppCompatActivity {
     private boolean isSearching;
     private boolean isShowingPopup;
 
-    private ProductWrapper orderedItem;
+    private ProductWrapper listOrderProduct;
     private Order order;
 
     public static void start(Context context, Table table) {
@@ -91,6 +92,8 @@ public class MenuActivity extends AppCompatActivity {
         context.startActivity(intent);
         currentTable = table;
     }
+
+
 
     private void getViewIdAll() {
         tableName = findViewById(R.id.text_table_name_menu);
@@ -119,6 +122,7 @@ public class MenuActivity extends AppCompatActivity {
 
         btnBack = findViewById(R.id.btn_back);
         btnBack.setOnClickListener(v -> MenuActivity.super.onBackPressed());
+        listOrderProduct = new ProductWrapper();
 
         btnViewDetail = findViewById(R.id.btn_view_details);
         btnViewDetail.setOnClickListener(new View.OnClickListener() {
@@ -133,16 +137,8 @@ public class MenuActivity extends AppCompatActivity {
                 else {
                     icLoader.setVisibility(View.VISIBLE);
                     (new Handler()).postDelayed(() -> {
-                        DetailTemporaryOrderActivity.start(getBaseContext(), currentTable);
+                        DetailTemporaryOrderActivity.start(getBaseContext(), currentTable, listOrderProduct.getProducts());
 
-//                        if (order == null)
-//                        {
-//                            DetailTemporaryOrderActivity.start(getBaseContext(), currentTable);
-//                        }
-//                        else
-//                        {
-////                            DetailTemporaryOrderActivity.start(this, currentTable, order, orderedItem);
-//                        }
                         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
 //                        finish();
                     }, 500);
@@ -153,6 +149,8 @@ public class MenuActivity extends AppCompatActivity {
 
         popupMenu = new PopupMenu(this, btnOption, R.style.BasePopupMenu);
         popupMenu.inflate(R.menu.popup_menu);
+        this.quantity.setText(String.valueOf(0));
+
     }
 
     public AlertDialog.Builder createAlertDiaglog(String message){
@@ -244,6 +242,10 @@ public class MenuActivity extends AppCompatActivity {
 
     private void addToCard(ProductsResultModel.Data product) {
         Log.v("menu_add_to_cart","Click button add to cart");
+        listOrderProduct.addProduct(product);
+        Log.v("menu_add_to_cart_list",listOrderProduct.getProducts().toString());
+        int numOfDishOrder = listOrderProduct.getQuantity();
+        this.quantity.setText(String.valueOf(numOfDishOrder));
 
     }
 

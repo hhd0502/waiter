@@ -80,7 +80,7 @@ public class DetailProductActivity extends AppCompatActivity {
         btnAddToCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int curAmount = Integer.parseInt(txtAmount.getText().toString());
             }
         });
     }

@@ -16,6 +16,8 @@ import  static com.hutech.lib.RetrofitClient.getRetrofit;
 import com.hutech.lib.ResultModel.UserLoginResultModel;
 import com.hutech.lib.Services.UserService;
 
+import com.hutech.lib.provider.CacheUserProvider;
+import com.hutech.lib.provider.TokenProvider;
 import com.hutech.waiter.R;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -28,6 +30,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText editUserName;
 
     EditText editPassword;
+    private TokenProvider tokenProvider;
+    private CacheUserProvider cacheUserProvider;
+
+    public LoginActivity(TokenProvider tokenProvider, CacheUserProvider cacheUserProvider) {
+        this.tokenProvider = tokenProvider;
+        this.cacheUserProvider = cacheUserProvider;
+    }
 
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -35,13 +44,25 @@ public class LoginActivity extends AppCompatActivity {
         context.startActivity(intent);
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login_activity);
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(isLoggedIn()){
+            startMain();
+        }
+    }
+
+    public boolean isLoggedIn(){
+        if(tokenProvider.getToken() != ""){
+            return true;
+        }
+        return false;
     }
 
     public void Login(View view) {
@@ -57,15 +78,28 @@ public class LoginActivity extends AppCompatActivity {
                     .subscribe(this::handleResponse, this::handleError));
         }
     }
-    private void handleResponse(UserLoginResultModel userLoginResultModel) {
+    private void handleResponse(UserLoginResultModel user) {
+        String token = user.getData().getToken();
+        tokenProvider.saveToken(token);
+        cacheUserProvider.saveUser(user.getData());
+        startMain();
+//        Intent intent = new Intent(this, MainActivity.class);
+////        Bundle userInfo = new Bundle();
+////        userInfo.putSerializable("user",userLoginResultModel.getData());
+////        intent.putExtras(userInfo);
+////        startActivity(intent);
+////        Log.v("login_error","start main activity");
+//        String token = userLoginResultModel.getData().getToken();
+//        tokenProvider.saveToken(token);
+//        cacheUserProvider.saveUser(userLoginResultModel.getData());
+//        finish();
+    }
+
+    public void startMain(){
         Intent intent = new Intent(this, MainActivity.class);
-        Bundle userInfo = new Bundle();
-        userInfo.putSerializable("user",userLoginResultModel.getData());
-        intent.putExtras(userInfo);
-        startActivity(intent);
-        Log.v("login_error","start main activity");
         finish();
     }
+
     private void handleError(Throwable error) {
         Log.v("login_error","Can't start main activity:"+ error);
     }
