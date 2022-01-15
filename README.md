@@ -1,1 +1,1 @@
-waiter
+- This is a student project - at HUTECH (Ho Chi Minh City University of Technology)
