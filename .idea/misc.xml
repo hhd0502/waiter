@@ -39,6 +39,7 @@
         <entry key="..\:/Android/Waiter/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Android/Waiter/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/drawable/background_rectangle_orange.xml" value="0.19375" />
+        <entry key="..\:/gitlocal/waiter/app/src/main/res/drawable/background_rounded_white.xml" value="0.19375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/drawable/button_round_corner_orange_background.xml" value="0.19375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/drawable/ic_add.xml" value="0.19375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/drawable/ic_add_orange.xml" value="0.19375" />
@@ -46,7 +47,7 @@
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/activity_detail_product.xml" value="0.22" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/activity_detail_temporary_order.xml" value="0.15625" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/activity_menu.xml" value="0.5" />
-        <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/fragment_account.xml" value="0.1" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/fragment_map.xml" value="1.0" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/fragment_serving.xml" value="0.1734375" />
         <entry key="..\:/gitlocal/waiter/app/src/main/res/layout/item_detail.xml" value="0.6713286713286714" />

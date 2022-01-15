@@ -97,11 +97,139 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnChangePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/background_rounded_white">
+
+                    <ImageView
+                        android:id="@+id/imgPassword"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_password_orange"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.widget.TextView
+                        android:id="@+id/txtChangePass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="Change password"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgPassword"
+                        app:layout_constraintStart_toEndOf="@+id/imgPassword"
+                        app:layout_constraintTop_toTopOf="@+id/imgPassword"
+                        app:layout_constraintVertical_bias="0.454" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnSetting"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/background_rounded_white"
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgSetting"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_setting_orange"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.widget.TextView
+                        android:id="@+id/txtSetting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="Settings"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgSetting"
+                        app:layout_constraintStart_toEndOf="@+id/imgSetting"
+                        app:layout_constraintTop_toTopOf="@+id/imgSetting"
+                        app:layout_constraintVertical_bias="0.454" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnNoti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/background_rounded_white">
+
+                    <ImageView
+                        android:id="@+id/imgNoti"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_noti_orange"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.widget.TextView
+                        android:id="@+id/txtNoti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="Notification"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgNoti"
+                        app:layout_constraintStart_toEndOf="@+id/imgNoti"
+                        app:layout_constraintTop_toTopOf="@+id/imgNoti" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/btnPrivacy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/background_rounded_white">
+
+                    <ImageView
+                        android:id="@+id/imgPrivacy"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="16dp"
+                        android:src="@drawable/ic_password_orange"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <android.widget.TextView
+                        android:id="@+id/txtPrivacy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:text="Privacy"
+                        android:textSize="25dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgPrivacy"
+                        app:layout_constraintStart_toEndOf="@+id/imgPrivacy"
+                        app:layout_constraintTop_toTopOf="@+id/imgPrivacy"
+                        app:layout_constraintVertical_bias="0.454" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
 
