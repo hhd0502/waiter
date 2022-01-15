@@ -44,8 +44,8 @@ public class ServingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreateView(inflater,container,savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_serving,container,false);
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_serving, container, false);
         listServing = (RecyclerView) view.findViewById(R.id.listServing);
         layoutEmpty = view.findViewById(R.id.layout_empty_1);
         btnAddLarge = view.findViewById(R.id.btn_add_table_large);
@@ -55,8 +55,10 @@ public class ServingFragment extends Fragment {
         onClickAddTable();
         return view;
     }
+
     private Fragment fragment;
-    public void onClickAddTable(){
+
+    public void onClickAddTable() {
         btnAddSmall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,7 +92,7 @@ public class ServingFragment extends Fragment {
     }
 
     private void handleResponse(TableResultModel tableResultModel) {
-        Log.v("serving_error: ","get serving table success");
+        Log.v("serving_error: ", "get serving table success");
         List<TableResultModel.Data> data = tableResultModel.getData();
         mapAdapter = new MapAdapter(data, getActivity(), new iClickMapItem() {
             @Override
@@ -98,14 +100,16 @@ public class ServingFragment extends Fragment {
                 gotoDetailServing(table);
             }
         });
-        if(mapAdapter.getItemCount() > 0){
+        if (mapAdapter.getItemCount() > 0) {
             layoutEmpty.setVisibility(View.GONE);
-        }
+        } else layoutEmpty.setVisibility(View.VISIBLE);
         listServing.setAdapter(mapAdapter);
     }
+
     Table selectedTable;
+
     private void gotoDetailServing(TableResultModel.Data table) {
-        Log.v("go_to_serving_with_table_name:",table.getName());
+        Log.v("go_to_serving_with_table_name:", table.getName());
         Table transTable = new Table();
         transTable.setId(table.get_id());
         transTable.setStatus(table.getStatus());
@@ -115,7 +119,7 @@ public class ServingFragment extends Fragment {
     }
 
     private void handleError(Throwable throwable) {
-        Log.v("call_api_error: ",throwable.getMessage());
+        Log.v("call_api_error: ", throwable.getMessage());
     }
 
     @Override
