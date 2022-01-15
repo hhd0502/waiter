@@ -26,4 +26,8 @@ public class TokenProvider {
         }
         return settings.getString("token", "");
     }
+    public void clear(){
+        SharedPreferences settings = context.getSharedPreferences("data", Context.MODE_PRIVATE);
+        settings.edit().clear().apply();
+    }
 }

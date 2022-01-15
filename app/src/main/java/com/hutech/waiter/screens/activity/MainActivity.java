@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.hutech.lib.provider.CacheUserProvider;
 import com.hutech.waiter.R;
 import com.hutech.waiter.screens.fragment.AccountFragment;
 import com.hutech.waiter.screens.fragment.MapFragment;
@@ -25,15 +27,34 @@ public class MainActivity extends AppCompatActivity implements View.OnCreateCont
     static {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
+    private Context context;
+    public MainActivity() {
+        this.cacheUserProvider = new CacheUserProvider(this);
+        this.context = this;
+    }
+    private static CacheUserProvider cacheUserProvider;
 
+    public static void start (Context context, CacheUserProvider userProvider){
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        cacheUserProvider = userProvider;
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.layout_main_activity);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new ServingFragment());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cacheUserProvider = null;
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener(){
@@ -58,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements View.OnCreateCont
                     loadFragment(fragment);
                     return true;
                 case R.id.account:
-                    fragment = new AccountFragment();
-                    Intent intent = getIntent();
-                    Bundle userInfo = intent.getExtras();
-                    fragment.setArguments(userInfo);
+                    fragment = new AccountFragment(context);
+//                    Intent intent = getIntent();
+//                    Bundle userInfo = intent.getExtras();
+//                    fragment.setArguments(userInfo);
                     loadFragment(fragment);
                     return true;
             }

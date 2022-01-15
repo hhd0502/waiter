@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-import  static com.hutech.lib.RetrofitClient.getRetrofit;
+import static com.hutech.lib.RetrofitClient.getRetrofit;
 
 import com.hutech.lib.ResultModel.UserLoginResultModel;
 import com.hutech.lib.Services.UserService;
@@ -28,14 +28,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
     EditText editUserName;
-
     EditText editPassword;
+
     private TokenProvider tokenProvider;
     private CacheUserProvider cacheUserProvider;
 
-    public LoginActivity(TokenProvider tokenProvider, CacheUserProvider cacheUserProvider) {
-        this.tokenProvider = tokenProvider;
-        this.cacheUserProvider = cacheUserProvider;
+    public LoginActivity() {
+        tokenProvider = new TokenProvider(this);
+        cacheUserProvider = new CacheUserProvider(this);
     }
 
     public static void start(Context context) {
@@ -53,13 +53,42 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if(isLoggedIn()){
-            startMain();
+        if (tokenProvider != null && cacheUserProvider != null) {
+            if (isLoggedIn()) {
+                startMain();
+            }
         }
     }
 
-    public boolean isLoggedIn(){
-        if(tokenProvider.getToken() != ""){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (tokenProvider != null && cacheUserProvider != null) {
+            if (isLoggedIn()) {
+                startMain();
+            }
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (tokenProvider != null && cacheUserProvider != null) {
+            if (isLoggedIn()) {
+                startMain();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        tokenProvider = null;
+        cacheUserProvider = null;
+    }
+
+    public boolean isLoggedIn() {
+        if (tokenProvider.getToken() != "") {
             return true;
         }
         return false;
@@ -72,35 +101,33 @@ public class LoginActivity extends AppCompatActivity {
         String password = editPassword.getText().toString();
         if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(password)) {
             UserService userServices = getRetrofit().create(UserService.class);
-            new CompositeDisposable().add(userServices.logIn(userName,password)
+            new CompositeDisposable().add(userServices.logIn(userName, password)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));
         }
     }
+
     private void handleResponse(UserLoginResultModel user) {
-        String token = user.getData().getToken();
-        tokenProvider.saveToken(token);
-        cacheUserProvider.saveUser(user.getData());
-        startMain();
-//        Intent intent = new Intent(this, MainActivity.class);
-////        Bundle userInfo = new Bundle();
-////        userInfo.putSerializable("user",userLoginResultModel.getData());
-////        intent.putExtras(userInfo);
-////        startActivity(intent);
-////        Log.v("login_error","start main activity");
-//        String token = userLoginResultModel.getData().getToken();
-//        tokenProvider.saveToken(token);
-//        cacheUserProvider.saveUser(userLoginResultModel.getData());
-//        finish();
+
+        if (tokenProvider != null && cacheUserProvider != null) {
+            String token = user.getData().getToken();
+            tokenProvider.saveToken(token);
+            cacheUserProvider.saveUser(user.getData());
+            startMain();
+        } else {
+            Log.v("login_error", "Can't start main activity - cacheUserProvider is NULL");
+            Log.v("login_error", "Can't start main activity - tokenProvider is NULL");
+            finish();
+        }
     }
 
-    public void startMain(){
-        Intent intent = new Intent(this, MainActivity.class);
+    public void startMain() {
+        MainActivity.start(this, cacheUserProvider);
         finish();
     }
 
     private void handleError(Throwable error) {
-        Log.v("login_error","Can't start main activity:"+ error);
+        Log.v("login_error", "Can't start main activity:" + error);
     }
 }

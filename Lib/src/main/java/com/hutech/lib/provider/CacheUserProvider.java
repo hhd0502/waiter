@@ -15,17 +15,21 @@ public class CacheUserProvider {
     public void saveUser(UserLoginResultModel.Data user){
         SharedPreferences settings = context.getSharedPreferences("user", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
+
         editor.putString("UserID", user.get_id());
         editor.putString("avatar_url", user.getAvatarUrl());
         editor.putString("email", user.getEmail());
         editor.putString("username", user.getUsername());
         editor.putString("fullname", user.getFullname());
         editor.putString("phone_number", user.getPhone_number());
+        editor.apply();
     }
     public UserLoginResultModel.Data getUser(){
-        UserLoginResultModel.Data user = new UserLoginResultModel().getData();
-        SharedPreferences settings = context.getSharedPreferences("user", Context.MODE_PRIVATE);
-        user.set_id(settings.getString("UserID",""));
+        SharedPreferences settings = this.context.getSharedPreferences("user", Context.MODE_PRIVATE);
+
+        UserLoginResultModel.Data user = new UserLoginResultModel.Data();
+        String id = settings.getString("UserID","");
+        user.set_id(id);
         user.setAvatar_url(settings.getString("avatar_url",""));
         user.setEmail(settings.getString("email",""));
         user.setUsername(settings.getString("username",""));
@@ -33,5 +37,9 @@ public class CacheUserProvider {
         user.setPhone_number(settings.getString("phone_number",""));
 
         return user;
+    }
+    public void clear(){
+        SharedPreferences settings = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        settings.edit().clear().apply();
     }
 }

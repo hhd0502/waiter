@@ -44,9 +44,9 @@ public class UserLoginResultModel implements Serializable {
     @Override
     public String toString()
     {
-        return "ClassPojo [data = "+data+", message = "+message+", status = "+status+"]";
+        return "[data = "+data+", message = "+message+", status = "+status+"]";
     }
-    public class Data implements Serializable
+    public static class Data implements Serializable
     {
         private String avatar_url;
 
@@ -135,7 +135,7 @@ public class UserLoginResultModel implements Serializable {
         @Override
         public String toString()
         {
-            return "ClassPojo [avatar_url = "+avatar_url+", phone_number = "+phone_number+", _id = "+_id+", fullname = "+fullname+", email = "+email+", username = "+username+", token = "+token+"]";
+            return "[avatar_url = "+avatar_url+", phone_number = "+phone_number+", _id = "+_id+", fullname = "+fullname+", email = "+email+", username = "+username+", token = "+token+"]";
         }
     }
 }
