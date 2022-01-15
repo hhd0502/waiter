@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hutech.lib.ResultModel.TableResultModel;
 import com.hutech.lib.Services.TableService;
@@ -23,6 +24,8 @@ import com.hutech.waiter.adapter.MapAdapter;
 import com.hutech.waiter.adapter.iClickMapItem;
 import com.hutech.waiter.screens.activity.MenuActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -35,6 +38,7 @@ public class ServingFragment extends Fragment {
     MapAdapter mapAdapter;
     LinearLayout layoutEmpty;
     View btnAddSmall, btnAddLarge;
+    TextView textToday;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,9 @@ public class ServingFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_serving, container, false);
+        textToday = view.findViewById(R.id.text_today);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        textToday.setText(String.valueOf(simpleDateFormat.format(Calendar.getInstance().getTime())));
         listServing = (RecyclerView) view.findViewById(R.id.listServing);
         layoutEmpty = view.findViewById(R.id.layout_empty_1);
         btnAddLarge = view.findViewById(R.id.btn_add_table_large);
@@ -55,6 +62,7 @@ public class ServingFragment extends Fragment {
         onClickAddTable();
         return view;
     }
+
 
     private Fragment fragment;
 

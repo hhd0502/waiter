@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/splash_background"
-
-    >
+    android:orientation="vertical">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -22,15 +19,14 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher_foreground"
-                />
+                android:src="@mipmap/ic_launcher_foreground" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_large"
-                android:layout_marginEnd="@dimen/margin_large"
                 android:layout_marginTop="@dimen/margin_extra_large"
+                android:layout_marginEnd="@dimen/margin_large"
                 android:background="@drawable/medium_round_corner_white_background"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
@@ -41,27 +37,28 @@
                     android:layout_marginStart="@dimen/size_text_extra_medium"
                     android:src="@drawable/ic_user_name" />
 
-
-                    <me.imstudio.core.ui.widget.EditText
-                        android:id="@+id/edit_user_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_icon_x6"
-                        android:layout_marginStart="@dimen/margin_medium"
-                        android:paddingEnd="@dimen/size_text_extra_medium"
-                        android:paddingStart="0dp"
-                        android:layout_gravity="center"
-                        android:background="@android:color/transparent"
-                        android:gravity="start|center"
-                        android:hint="Tên đăng nhập"
-                        android:fontFamily="@font/gilroy_regular"
-                        android:textCursorDrawable="@null" />
+                <android.widget.EditText
+                    android:id="@+id/edit_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_icon_x6"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/gilroy_regular"
+                    android:gravity="start|center"
+                    android:hint="@string/username_hint"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="@dimen/size_text_extra_medium"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:textCursorDrawable="@null" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_large"
-                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="@dimen/margin_large"
                 android:background="@drawable/medium_round_corner_white_background"
                 android:gravity="center_vertical"
@@ -70,7 +67,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_text_extra_medium"
+                    android:layout_marginStart="14sp"
                     android:src="@drawable/ic_password" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -82,19 +79,23 @@
                     app:errorEnabled="false"
                     app:hintEnabled="false"
                     android:stateListAnimator="@null">
-                    <me.imstudio.core.ui.widget.EditText
+
+                    <android.widget.EditText
                         android:id="@+id/edit_password"
                         android:layout_width="match_parent"
-                        android:paddingEnd="@dimen/size_text_extra_medium"
+                        android:layout_height="48dp"
                         android:paddingStart="0dp"
-                        android:layout_height="@dimen/size_icon_x6"
+                        android:paddingEnd="@dimen/size_text_extra_medium"
                         android:layout_gravity="center"
                         android:gravity="start|center"
                         android:background="@android:color/transparent"
-                        android:hint="Mật khẩu"
+                        android:hint="@string/hint_matkhau"
                         android:fontFamily="@font/gilroy_regular"
-                        android:textCursorDrawable="@null"
-                        android:inputType="textPassword"/>
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:textSize="15sp"
+                        android:textCursorDrawable="@null" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
@@ -102,15 +103,15 @@
             <me.imstudio.core.ui.widget.Button
                 android:id="@+id/button"
                 style="@style/ButtonTheme"
-                android:text="Đăng nhập"
-                android:onClick="Login"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:layout_marginTop="@dimen/margin_large"
                 android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_large"
                 android:layout_marginEnd="@dimen/margin_large"
+                android:background="@drawable/medium_round_corner_gradient_background"
                 android:enabled="true"
-                android:background="@drawable/medium_round_corner_gradient_background"/>
+                android:onClick="Login"
+                android:text="Đăng nhập"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

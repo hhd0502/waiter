@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_weight="1">
-            <me.imstudio.core.ui.widget.TextView
+            <android.widget.TextView
                 android:id="@+id/text_today"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

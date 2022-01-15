@@ -4,7 +4,10 @@ import static com.hutech.lib.RetrofitClient.getRetrofit;
 
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -39,6 +42,15 @@ public class MapFragment extends Fragment {
     RecyclerView listTable;
     private MapAdapter mapAdapter;
     ChangeTableStatusDialog dialog;
+
+    AppCompatImageView btnBack;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +58,13 @@ public class MapFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_map,container,false);
         listTable = (RecyclerView) view.findViewById(R.id.listTable);
         listTable.setLayoutManager(new GridLayoutManager(listTable.getContext(), 3));
+        btnBack = view.findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
         dialog = new ChangeTableStatusDialog();
         getData();
         return view;
@@ -148,4 +167,6 @@ public class MapFragment extends Fragment {
     public void onResume() {
         super.onResume();
     }
+
+
 }

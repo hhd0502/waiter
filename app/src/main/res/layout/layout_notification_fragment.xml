@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryBackground">
-    <TextView
+    <android.widget.TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/gilroy_semi_bold"
@@ -33,7 +33,7 @@
                 android:layout_width="@dimen/size_icon_x9"
                 android:layout_height="@dimen/size_icon_x9"
                 app:srcCompat="@drawable/ic_notification"/>
-            <TextView
+            <android.widget.TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin"

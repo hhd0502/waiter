@@ -31,4 +31,6 @@
     <string name="label_account">Tài khoản</string>
     <string name="default_label_user">Admin</string>
     <string name="text_empty_table">Còn trống</string>
+    <string name="username_hint">Tên đăng nhập</string>
+    <string name="hint_matkhau">Mật khẩu</string>
 </resources>

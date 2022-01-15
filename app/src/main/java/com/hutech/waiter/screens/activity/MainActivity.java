@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,13 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnCreateCont
         cacheUserProvider = userProvider;
         context.startActivity(intent);
     }
-
+    private BottomNavigationView navigation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.layout_main_activity);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         loadFragment(new ServingFragment());
     }
@@ -56,11 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnCreateCont
         super.onDestroy();
         cacheUserProvider = null;
     }
-
+    private int mMenuItemSelected;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener(){
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
+            mMenuItemSelected = item.getItemId();
             switch (item.getItemId()) {
                 case R.id.serving:
                     fragment = new ServingFragment();
@@ -80,9 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnCreateCont
                     return true;
                 case R.id.account:
                     fragment = new AccountFragment(context);
-//                    Intent intent = getIntent();
-//                    Bundle userInfo = intent.getExtras();
-//                    fragment.setArguments(userInfo);
                     loadFragment(fragment);
                     return true;
             }
@@ -95,5 +95,21 @@ public class MainActivity extends AppCompatActivity implements View.OnCreateCont
         transaction.replace(R.id.frame_container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        int selectedItemId = navigation.getSelectedItemId();
+        if (R.id.serving != selectedItemId) {
+            setHomeItem(MainActivity.this);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    public static void setHomeItem(Activity activity) {
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                activity.findViewById(R.id.navigation);
+        bottomNavigationView.setSelectedItemId(R.id.serving);
     }
 }

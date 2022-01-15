@@ -17,7 +17,7 @@
         android:paddingEnd="@dimen/margin_medium"
         android:background="@android:color/white"
         android:orientation="horizontal">
-        <TextView
+        <android.widget.TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="end">
-            <TextView
+            <android.widget.TextView
                 android:id="@+id/text_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_round_table"/>
-                <TextView
+                <android.widget.TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_text_extra_medium"
@@ -87,7 +87,7 @@
                     android:textColor="@color/colorTextPrimary"
                     android:text="Số bàn"
                     android:textAllCaps="true"/>
-                <TextView
+                <android.widget.TextView
                     android:id="@+id/text_number_table"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_revenue"/>
-                <TextView
+                <android.widget.TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_text_extra_medium"
@@ -128,7 +128,7 @@
                     android:textColor="@color/colorTextPrimary"
                     android:text="Doanh thu"
                     android:textAllCaps="true"/>
-                <TextView
+                <android.widget.TextView
                     android:id="@+id/text_revenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_plate_type_3"/>
-                <TextView
+                <android.widget.TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_text_extra_medium"
@@ -168,7 +168,7 @@
                     android:textColor="@color/colorTextPrimary"
                     android:text="Số món"
                     android:textAllCaps="true"/>
-                <TextView
+                <android.widget.TextView
                     android:id="@+id/text_number_foods"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
                 android:layout_width="@dimen/size_icon_x9"
                 android:layout_height="@dimen/size_icon_x9"
                 app:srcCompat="@drawable/ic_empty_statistic"/>
-            <TextView
+            <android.widget.TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin"

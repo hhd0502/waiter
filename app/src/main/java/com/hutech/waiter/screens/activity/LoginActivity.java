@@ -7,7 +7,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -48,6 +51,27 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_login_activity);
+        initView();
+    }
+
+    private void initView() {
+        editUserName = findViewById(R.id.edit_user_name);
+        editPassword = findViewById(R.id.edit_password);
+        HideReturnsTransformationMethod showPassword = HideReturnsTransformationMethod.getInstance();
+        PasswordTransformationMethod hidePassword = PasswordTransformationMethod.getInstance();
+
+        editPassword.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    editPassword.setTransformationMethod(showPassword);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    editPassword.setTransformationMethod(hidePassword);
+                    return true;
+            }
+            return false;
+        });
+
     }
 
     @Override
@@ -88,10 +112,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public boolean isLoggedIn() {
-        if (tokenProvider.getToken() != "") {
-            return true;
-        }
-        return false;
+        return !tokenProvider.getToken().equals("");
     }
 
     public void Login(View view) {
