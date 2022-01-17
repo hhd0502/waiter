@@ -118,12 +118,19 @@ public class ServingFragment extends Fragment {
 
     private void gotoDetailServing(TableResultModel.Data table) {
         Log.v("go_to_serving_with_table_name:", table.getName());
+        
+        getOrderedByTable(table.get_id());
+        
+        
         Table transTable = new Table();
         transTable.setId(table.get_id());
         transTable.setStatus(table.getStatus());
         transTable.setName(table.getName());
         selectedTable = transTable;
         MenuActivity.start(requireContext(), selectedTable);
+    }
+
+    private void getOrderedByTable(String id) {
     }
 
     private void handleError(Throwable throwable) {

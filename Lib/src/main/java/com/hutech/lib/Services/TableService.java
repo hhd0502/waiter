@@ -1,6 +1,7 @@
 package com.hutech.lib.Services;
 
 import com.hutech.lib.ResultModel.ChangeStatusModel;
+import com.hutech.lib.ResultModel.OrderedResultModel;
 import com.hutech.lib.ResultModel.TableResultModel;
 
 
@@ -15,6 +16,9 @@ public interface TableService {
 
     @GET("table/get-serving-table")
     Observable<TableResultModel> getServingTable();
+
+    @GET("table/get-ordered")
+    Observable<OrderedResultModel> getOrderedServingTable(String tableID);
 
     @POST("table/change-status")
     Observable<ChangeStatusModel> changeStatus(@Query("id") String tableId, @Query("status") int status);
